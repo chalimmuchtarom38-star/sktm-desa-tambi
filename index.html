@@ -178,11 +178,11 @@
             <small style="color: #666; font-size: 11px;">*Nama Desa, Kecamatan, dan Kabupaten dikunci permanen.</small>
         </div>
 
-        <!-- Input Kustom Nama Rumah Sakit / Tujuan Pengobatan -->
-        <div class="form-group">
-            <label>Tujuan Pengobatan / Rumah Sakit:</label>
+        <!-- KOLOM INPUT BARU: NAMA RUMAH SAKIT / TUJUAN PENGOBATAN -->
+        <div class="form-group" style="background: #fff3cd; padding: 10px; border-radius: 6px; border: 1px solid #ffebaA;">
+            <label style="color: #856404;">Tujuan Pengobatan / Rumah Sakit:</label>
             <input type="text" id="inRumahSakit" value="RSUD Dr. M. Ashari Pemalang" oninput="updatePreview()">
-            <small style="color: #666; font-size: 11px;">*Ketik nama Rumah Sakit tujuan secara manual.</small>
+            <small style="color: #856404; font-size: 11px;">*Ketik nama Rumah Sakit tujuan di sini secara manual.</small>
         </div>
 
         <div class="form-group">
@@ -238,8 +238,8 @@
             <tr><td>A l a m a t</td><td>:</td><td id="outAlamat">Desa Tambi, RT 002 / RW. 001 Kec. Watukumpul, Kab. Pemalang</td></tr>
         </table>
 
-        <!-- Kalimat Isian Kustom Nama Rumah Sakit -->
-        <p class="isi-surat">Orang tersebut diatas adalah Keluarga Tidak Mampu ( PRA KS ) yang saat ini sedang Sakit dan membutuhkan pengobatan secara rutin dan berkala di <span id="outRumahSakit">RSUD Dr. M. Ashari Pemalang</span>.</p>
+        <!-- PARAGRAF ISI SURAT YANG TERHUBUNG KE INPUT RUMAH SAKIT -->
+        <p class="isi-surat">Orang tersebut diatas adalah Keluarga Tidak Mampu ( PRA KS ) yang saat ini sedang Sakit dan membutuhkan pengobatan secara rutin dan berkala di <span id="outRumahSakit" style="font-weight: bold;">RSUD Dr. M. Ashari Pemalang</span>.</p>
 
         <p class="isi-surat">Demikian Surat Keterangan Tidak Mampu ini dibuat dan guna diperlukan sebagaimana mestinya.</p>
 
