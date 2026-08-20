@@ -15,10 +15,10 @@
         .form-group input, .form-group textarea, .form-group select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
         .form-group input:not(.inline-input), .form-group textarea:not(.inline-input), .form-group select:not(.inline-input) { width: 100%; }
         
-        /* Layout Pengunci Nomor Surat */
-        .nomor-lock-wrapper { display: flex; align-items: center; gap: 5px; background: #e9ecef; border: 1px solid #ced4da; padding: 6px; border-radius: 4px; }
-        .nomor-lock-wrapper span.locked-text { font-weight: bold; color: #495057; font-size: 13px; user-select: none; }
-        .nomor-lock-wrapper input, .nomor-lock-wrapper select { border: 1px solid #a6a6a6; }
+        /* Layout Pengunci Nomor Surat & Alamat */
+        .nomor-lock-wrapper, .alamat-lock-wrapper { display: flex; align-items: center; gap: 4px; background: #e9ecef; border: 1px solid #ced4da; padding: 6px; border-radius: 4px; flex-wrap: wrap; }
+        .locked-text { font-weight: bold; color: #495057; font-size: 13px; user-select: none; }
+        .nomor-lock-wrapper input, .nomor-lock-wrapper select, .alamat-lock-wrapper input { border: 1px solid #a6a6a6; background: #fff; }
 
         button { background-color: #007bff; color: white; border: none; padding: 12px 15px; cursor: pointer; border-radius: 4px; font-weight: bold; width: 100%; margin-top: 10px; font-size: 16px; }
         button:hover { background-color: #0056b3; }
@@ -26,7 +26,7 @@
         /* Format Kop Surat Resmi Pemerintahan */
         .kop-surat { 
             position: relative;
-            border-bottom: 4px double #000; /* Garis ganda resmi membentang penuh */
+            border-bottom: 4px double #000; 
             padding-bottom: 8px; 
             margin-bottom: 25px; 
             width: 100%;
@@ -58,7 +58,7 @@
         .kop-teks {
             width: 100%;
             text-align: center;
-            padding-left: 135px; /* Menjaga teks tetap pas di tengah tanpa tertimpa logo */
+            padding-left: 135px; 
             padding-right: 20px;
         }
 
@@ -155,10 +155,20 @@
             <label>Pekerjaan:</label>
             <input type="text" id="inPekerjaan" value="PERDAGANGAN" oninput="updatePreview()">
         </div>
+
+        <!-- Input Alamat Kunci Desa, Kec, Kab (Hanya RT & RW yang dapat diisi) -->
         <div class="form-group">
-            <label>Alamat:</label>
-            <textarea id="inAlamat" rows="2" oninput="updatePreview()">Desa Tambi, RT 002 / RW. 001 Kec. Watukumpul, Kab. Pemalang</textarea>
+            <label>Alamat (Terkunci Otomatis):</label>
+            <div class="alamat-lock-wrapper">
+                <span class="locked-text">Desa Tambi, RT</span>
+                <input type="text" id="inRt" class="inline-input" value="002" style="width: 48px; text-align: center;" oninput="updatePreview()" title="Isi RT">
+                <span class="locked-text">/ RW.</span>
+                <input type="text" id="inRw" class="inline-input" value="001" style="width: 48px; text-align: center;" oninput="updatePreview()" title="Isi RW">
+                <span class="locked-text">Kec. Watukumpul, Kab. Pemalang</span>
+            </div>
+            <small style="color: #666; font-size: 11px;">*Hanya kotak putih RT & RW yang dapat diubah.</small>
         </div>
+
         <div class="form-group">
             <label>Tanggal Surat Diterbitkan:</label>
             <input type="text" id="inTglSurat" value="12 Januari 2026" oninput="updatePreview()">
@@ -260,12 +270,17 @@
         // Nomor Terkunci
         document.getElementById('outNomor').innerText = "400.3.5.6 / " + noUrut + " / " + bulan + " / 2026";
         
-        // Update Data
+        // Update Data Utama
         document.getElementById('outNama').innerText = document.getElementById('inNama').value;
         document.getElementById('outNik').innerText = document.getElementById('inNik').value;
         document.getElementById('outTtl').innerText = document.getElementById('inTtl').value;
         document.getElementById('outPekerjaan').innerText = document.getElementById('inPekerjaan').value;
-        document.getElementById('outAlamat').innerText = document.getElementById('inAlamat').value;
+        
+        // Update Alamat Terkunci (Menggabungkan RT dan RW)
+        var rt = document.getElementById('inRt').value;
+        var rw = document.getElementById('inRw').value;
+        document.getElementById('outAlamat').innerText = "Desa Tambi, RT " + rt + " / RW. " + rw + " Kec. Watukumpul, Kab. Pemalang";
+
         document.getElementById('outTglSurat').innerText = document.getElementById('inTglSurat').value;
         
         // Logic Penandatangan
