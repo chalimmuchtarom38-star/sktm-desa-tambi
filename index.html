@@ -171,11 +171,18 @@
             </div>
         </div>
 
-        <!-- Box Hasil Alamat Terkunci (Readonly / Tidak Bisa Diketik/Diubah Manual) -->
+        <!-- Box Hasil Alamat Terkunci -->
         <div class="form-group">
             <label>Alamat Lengkap (Terkunci Otomatis):</label>
             <textarea id="inAlamatLengkap" rows="2" readonly></textarea>
             <small style="color: #666; font-size: 11px;">*Nama Desa, Kecamatan, dan Kabupaten dikunci permanen.</small>
+        </div>
+
+        <!-- Input Kustom Nama Rumah Sakit / Tujuan Pengobatan -->
+        <div class="form-group">
+            <label>Tujuan Pengobatan / Rumah Sakit:</label>
+            <input type="text" id="inRumahSakit" value="RSUD Dr. M. Ashari Pemalang" oninput="updatePreview()">
+            <small style="color: #666; font-size: 11px;">*Ketik nama Rumah Sakit tujuan secara manual.</small>
         </div>
 
         <div class="form-group">
@@ -231,7 +238,8 @@
             <tr><td>A l a m a t</td><td>:</td><td id="outAlamat">Desa Tambi, RT 002 / RW. 001 Kec. Watukumpul, Kab. Pemalang</td></tr>
         </table>
 
-        <p class="isi-surat">Orang tersebut diatas adalah Keluarga Tidak Mampu ( PRA KS ) yang saat ini sedang Sakit dan membutuhkan pengobatan secara rutin dan berkala di Rumah Sakit.</p>
+        <!-- Kalimat Isian Kustom Nama Rumah Sakit -->
+        <p class="isi-surat">Orang tersebut diatas adalah Keluarga Tidak Mampu ( PRA KS ) yang saat ini sedang Sakit dan membutuhkan pengobatan secara rutin dan berkala di <span id="outRumahSakit">RSUD Dr. M. Ashari Pemalang</span>.</p>
 
         <p class="isi-surat">Demikian Surat Keterangan Tidak Mampu ini dibuat dan guna diperlukan sebagaimana mestinya.</p>
 
@@ -265,10 +273,7 @@
         var rw = document.getElementById('inRw').value;
         var alamatHasil = "Desa Tambi, RT " + rt + " / RW. " + rw + " Kec. Watukumpul, Kab. Pemalang";
         
-        // Tampilkan pada box form yang terkunci
         document.getElementById('inAlamatLengkap').value = alamatHasil;
-        
-        // Update ke pratinjau surat
         updatePreview();
     }
 
@@ -300,6 +305,9 @@
         // Output Alamat ke Surat
         document.getElementById('outAlamat').innerText = document.getElementById('inAlamatLengkap').value;
 
+        // Output Nama Rumah Sakit Manual ke Surat
+        document.getElementById('outRumahSakit').innerText = document.getElementById('inRumahSakit').value;
+
         document.getElementById('outTglSurat').innerText = document.getElementById('inTglSurat').value;
         
         // Logic Penandatangan
@@ -315,7 +323,6 @@
         document.getElementById('outPenandatangan').innerText = document.getElementById('inPenandatangan').value;
     }
 
-    // Jalankan fungsi alamat otomatis saat halaman pertama kali diisi/dimuat
     window.onload = function() {
         updateAlamatLengkap();
     };
