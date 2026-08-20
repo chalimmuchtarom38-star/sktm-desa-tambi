@@ -24,8 +24,8 @@
         button:hover { background-color: #0056b3; }
         
         /* Format Cetak Surat SKTM */
-        .kop-surat { text-align: center; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px; position: relative; }
-        .kop-surat img { position: absolute; left: 10px; top: 0; width: 75px; height: auto; }
+        .kop-surat { text-align: center; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px; position: relative; min-height: 90px; }
+        .kop-surat img { position: absolute; left: 10px; top: 0; width: 75px; height: auto; max-height: 90px; object-fit: contain; }
         .kop-surat h3 { margin: 2px 0; font-size: 16px; font-weight: bold; }
         .kop-surat h2 { margin: 2px 0; font-size: 18px; font-weight: bold; }
         .judul-surat { text-align: center; margin-bottom: 25px; }
@@ -52,6 +52,13 @@
     <div class="form-section">
         <h2 style="margin-top:0;">Input Data SKTM</h2>
         
+        <!-- Upload File Logo Sesuai Keinginan User -->
+        <div class="form-group" style="background: #e8f4f8; padding: 10px; border-radius: 6px; border: 1px dashed #007bff;">
+            <label style="color: #0056b3;">Upload File Logo Kustom:</label>
+            <input type="file" id="inLogoFile" accept="image/*" onchange="previewLogo(event)">
+            <small style="color: #666; font-size: 11px;">*Pilih gambar logo dari perangkat Anda agar pas dan sesuai.</small>
+        </div>
+
         <!-- Input Nomor Surat Yang Dikunci -->
         <div class="form-group">
             <label>Nomor Surat (Terkunci Otomatis):</label>
@@ -122,8 +129,8 @@
     <!-- Tampilan Surat Hasil Generator -->
     <div class="preview-section" id="printArea">
         <div class="kop-surat">
-            <!-- Panggilan Gambar Lokal (logo.png) -->
-            <img src="logo.png" alt="Logo Pemalang" onerror="this.style.display='none'; alert('File logo.png tidak ditemukan! Pastikan file gambar dinamai logo.png dan diletakkan di folder yang sama dengan index.html');">
+            <!-- Elemen Gambar Logo -->
+            <img id="imgLogo" src="logo.png" alt="Logo Pemalang" onerror="this.style.display='none';">
             
             <h3>PEMERINTAH KABUPATEN PEMALANG</h3>
             <h3>KECAMATAN WATUKUMPUL</h3>
@@ -161,6 +168,19 @@
 </div>
 
 <script>
+    // Fungsi untuk memperbarui preview Logo secara langsung dari input file
+    function previewLogo(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imgLogo');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        if(event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+
     function changePenandatangan() {
         var tipe = document.getElementById('inJabatan').value;
         var inputNama = document.getElementById('inPenandatangan');
