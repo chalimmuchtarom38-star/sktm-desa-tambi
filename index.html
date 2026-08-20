@@ -25,11 +25,7 @@
         
         /* Format Cetak Surat SKTM */
         .kop-surat { text-align: center; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px; position: relative; }
-        
-        /* Kontainer Logo Anti-Gagal */
-        .kop-surat .logo-container { position: absolute; left: 10px; top: 0; width: 70px; height: 85px; }
-        .kop-surat .logo-container svg { width: 100%; height: 100%; }
-
+        .kop-surat img { position: absolute; left: 10px; top: 0; width: 75px; height: auto; }
         .kop-surat h3 { margin: 2px 0; font-size: 16px; font-weight: bold; }
         .kop-surat h2 { margin: 2px 0; font-size: 18px; font-weight: bold; }
         .judul-surat { text-align: center; margin-bottom: 25px; }
@@ -126,25 +122,8 @@
     <!-- Tampilan Surat Hasil Generator -->
     <div class="preview-section" id="printArea">
         <div class="kop-surat">
-            <!-- Vektor Logo Pemalang Langsung (Inline SVG) - Anti Gagal / Offline Ready -->
-            <div class="logo-container">
-                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Perisai Kuning Tepi Merah -->
-                    <path d="M 10,10 L 90,10 C 90,75 50,115 50,115 C 50,115 10,75 10,10 Z" fill="#FFCC00" stroke="#CC0000" stroke-width="4"/>
-                    <!-- Lingkaran / Kubah Biru -->
-                    <path d="M 25,25 Q 50,10 75,25 C 75,70 50,90 50,90 C 50,90 25,70 25,25 Z" fill="#0066CC"/>
-                    <!-- Gunung Slamet -->
-                    <path d="M 28,60 L 50,30 L 72,60 Z" fill="#009900"/>
-                    <path d="M 38,60 L 50,42 L 62,60 Z" fill="#006600"/>
-                    <!-- Padi dan Kapas -->
-                    <path d="M 20,75 Q 15,40 30,25" stroke="#FFCC00" stroke-width="3" fill="none"/>
-                    <path d="M 80,75 Q 85,40 70,25" stroke="#FFFFFF" stroke-width="3" fill="none"/>
-                    <!-- Pita Merah Putih / Blencong -->
-                    <path d="M 30,95 Q 50,105 70,95" stroke="#CC0000" stroke-width="4" fill="none"/>
-                    <!-- Bintang Emas -->
-                    <polygon points="50,15 53,23 61,23 55,28 57,36 50,31 43,36 45,28 39,23 47,23" fill="#FFFF00"/>
-                </svg>
-            </div>
+            <!-- Panggilan Gambar Lokal (logo.png) -->
+            <img src="logo.png" alt="Logo Pemalang" onerror="this.style.display='none'; alert('File logo.png tidak ditemukan! Pastikan file gambar dinamai logo.png dan diletakkan di folder yang sama dengan index.html');">
             
             <h3>PEMERINTAH KABUPATEN PEMALANG</h3>
             <h3>KECAMATAN WATUKUMPUL</h3>
