@@ -23,51 +23,67 @@
         button { background-color: #007bff; color: white; border: none; padding: 12px 15px; cursor: pointer; border-radius: 4px; font-weight: bold; width: 100%; margin-top: 10px; font-size: 16px; }
         button:hover { background-color: #0056b3; }
         
-        /* Layout Kop Surat Presisi Simetris (Flex/Grid Layout) */
+        /* Format Kop Surat Resmi Pemerintahan */
         .kop-surat { 
+            position: relative;
+            border-bottom: 4px double #000; /* Garis ganda resmi membentang penuh */
+            padding-bottom: 8px; 
+            margin-bottom: 25px; 
+            width: 100%;
+            min-height: 140px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            border-bottom: 3px double #000; 
-            padding-bottom: 8px; 
-            margin-bottom: 20px; 
-            width: 100%;
         }
         
+        /* Logo Kiri Tegak & Presisi */
         .kop-logo {
-            width: 200px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-shrink: 0;
+            justify-content: center;
         }
 
-        /* Ukuran Logo Sangat Besar & Tegak */
         .kop-logo img { 
-            width: 195px; 
+            width: 135px; 
             height: auto; 
-            max-height: 200px; 
+            max-height: 145px; 
             object-fit: contain; 
             display: block;
         }
         
+        /* Teks Kop Tengah Sempurna & Resmi */
         .kop-teks {
-            flex-grow: 1;
+            width: 100%;
             text-align: center;
-            padding: 0 10px;
+            padding-left: 135px; /* Menjaga teks tetap pas di tengah tanpa tertimpa logo */
+            padding-right: 20px;
         }
 
-        .kop-teks h3 { margin: 2px 0; font-size: 19px; font-weight: bold; letter-spacing: 0.5px; }
-        .kop-teks h2 { margin: 4px 0; font-size: 24px; font-weight: bold; letter-spacing: 1px; }
-        
-        /* Spacer Kanan Penyeimbang Logo Agar Teks Berada Pas Di Tengah Kertas */
-        .kop-spacer {
-            width: 200px;
-            flex-shrink: 0;
+        .kop-teks h3 { 
+            margin: 2px 0; 
+            font-size: 18px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px; 
+        }
+        .kop-teks h2 { 
+            margin: 4px 0; 
+            font-size: 22px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 1px; 
+        }
+        .kop-teks p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            font-style: italic;
         }
 
-        .judul-surat { text-align: center; margin-bottom: 20px; }
-        .judul-surat h3 { text-decoration: underline; margin-bottom: 5px; font-size: 16px; font-weight: bold; }
+        .judul-surat { text-align: center; margin-bottom: 25px; }
+        .judul-surat h3 { text-decoration: underline; margin-bottom: 5px; font-size: 16px; font-weight: bold; text-transform: uppercase; }
         .table-data { width: 100%; margin-left: 20px; margin-bottom: 20px; border-collapse: collapse; }
         .table-data td { padding: 4px; vertical-align: top; font-size: 15px; }
         .isi-surat { font-size: 15px; line-height: 1.6; text-align: justify; text-indent: 30px; }
@@ -167,20 +183,18 @@
     <!-- Tampilan Surat Hasil Generator -->
     <div class="preview-section" id="printArea">
         <div class="kop-surat">
-            <!-- Kolom Logo Kiri -->
+            <!-- Logo Kabupaten Pemalang -->
             <div class="kop-logo">
                 <img id="imgLogo" src="logo.png" alt="Logo Pemalang" onerror="this.style.display='none';">
             </div>
             
-            <!-- Kolom Teks Tengah -->
+            <!-- Teks Kop Surat -->
             <div class="kop-teks">
                 <h3>PEMERINTAH KABUPATEN PEMALANG</h3>
                 <h3>KECAMATAN WATUKUMPUL</h3>
                 <h2>KEPALA DESA TAMBI</h2>
+                <p>Alamat: Jl. Raya Desa Tambi Kec. Watukumpul Kab. Pemalang Kode Pos 52357</p>
             </div>
-
-            <!-- Kolom Kosong Kanan Penyeimbang Center -->
-            <div class="kop-spacer"></div>
         </div>
 
         <div class="judul-surat">
